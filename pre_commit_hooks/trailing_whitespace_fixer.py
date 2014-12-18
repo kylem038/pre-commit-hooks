@@ -65,10 +65,10 @@ def fix_trailing_whitespace(argv=None):
             )
 
     if bad_whitespace_files:
-        for bad_whitespace_file in bad_whitespace_files:
-            print('Fixing {0}'.format(bad_whitespace_file))
-            _, extension = os.path.splitext(bad_whitespace_file.lower())
-            _fix_file(bad_whitespace_file, all_markdown or extension in md_exts)
+        print('Trailing Whitespace detected in: {0}'.format(', '.join(bad_whitespace_files)))
+
+        print('psst, you can fix this by running')
+        print("    set -i '' -e s/[[:space:]]*$//", ' '.join(bad_whitespace_files))
         return 1
     else:
         return 0
