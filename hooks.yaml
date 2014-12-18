@@ -128,3 +128,8 @@
     entry: trailing-whitespace-fixer
     language: python
     files: \.(c|cpp|html|erb|slim|haml|ejs|jade|js|coffee|json|rb|md|py|css|scss|less|sh|tmpl|txt|yaml|yml|pp)$
+-   id: eslint
+    name: eslint
+    entry: eslint
+    language: node
+    files: \.js$
