@@ -18,9 +18,10 @@ def fix_trailing_whitespace(argv):
     ](retcode=None).strip().splitlines()
 
     if bad_whitespace_files:
-        for bad_whitespace_file in bad_whitespace_files:
-            print('Fixing {0}'.format(bad_whitespace_file))
-            local['sed']['-i', '-e', 's/[[:space:]]*$//', bad_whitespace_file]()
+        print('Trailing Whitespace detected in: {0}'.format(', '.join(bad_whitespace_files)))
+        
+        print('psst, you can fix this by running')
+        print("    set -i '' -e s/[[:space:]]*$//", ' '.join(bad_whitespace_files))
         return 1
     else:
         return 0
