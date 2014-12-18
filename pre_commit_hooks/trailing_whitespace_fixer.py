@@ -9,7 +9,7 @@ import platform
 
 from pre_commit_hooks.util import cmd_output
 
-REMOVE_WHITESPACE = "set -i '' -e 's/[[:space:]]*$//'"
+REMOVE_WHITESPACE = "sed -i '' -e 's/[[:space:]]*$//'"
 if platform.system() != 'Darwin':
     REMOVE_WHITESPACE = REMOVE_WHITESPACE.replace("-i ''", '-i')
 
