@@ -19,7 +19,7 @@ def fix_trailing_whitespace(argv):
 
     if bad_whitespace_files:
         print('Trailing Whitespace detected in: {0}'.format(', '.join(bad_whitespace_files)))
-        
+
         print('psst, you can fix this by running')
         print("    set -i '' -e s/[[:space:]]*$//", ' '.join(bad_whitespace_files))
         return 1
