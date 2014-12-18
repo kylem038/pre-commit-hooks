@@ -86,10 +86,10 @@
     entry: double-quote-string-fixer
     language: python
     files: \.py$
--   id: end-of-file-fixer
-    name: Fix End of Files
-    description: Ensures that a file is either empty, or ends with one newline.
-    entry: end-of-file-fixer
+-   id: end-of-file-checker
+    name: Check End of Files
+    description: Checks that a file is either empty, or ends with one newline.
+    entry: end-of-file-checker
     language: python
     files: \.(c|cpp|html|erb|slim|haml|ejs|jade|js|coffee|json|rb|md|py|css|scss|less|sh|tmpl|txt|yaml|yml|pp)$
 -   id: fix-encoding-pragma
