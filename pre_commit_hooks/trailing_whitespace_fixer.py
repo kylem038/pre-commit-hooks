@@ -4,8 +4,18 @@ import argparse
 import fileinput
 import os
 import sys
+from plumbum import local
+import platform
 
 from pre_commit_hooks.util import cmd_output
+
+REMOVE_WHITESPACE = "set -i '' -e 's/[[:space:]]*$//'"
+if platform.system() != 'Darwin':
+    REMOVE_WHITESPACE = REMOVE_WHITESPACE.replace("-i ''", '-i')
+
+
+def quote_file(fname):
+    return "'{}'".format(fname)
 
 
 def _fix_file(filename, markdown=False):
@@ -68,7 +78,7 @@ def fix_trailing_whitespace(argv=None):
         print('Trailing Whitespace detected in: {0}'.format(', '.join(bad_whitespace_files)))
 
         print('psst, you can fix this by running')
-        print("    set -i '' -e s/[[:space:]]*$//", ' '.join(map(repr, bad_whitespace_files)))
+        print("    ", REMOVE_WHITESPACE, ' '.join(map(quote_file, bad_whitespace_files)))
         return 1
     else:
         return 0
