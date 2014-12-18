@@ -41,7 +41,7 @@ if platform.system() != 'Darwin':
     FIX_MULTIPLE_NEWLINES = FIX_MULTIPLE_NEWLINES.replace("-i ''", "-i")
 
 @entry
-def end_of_file_checker(argv):
+def end_of_file_fixer(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('filenames', nargs='*', help='Filenames to check')
     args = parser.parse_args(argv)
@@ -70,4 +70,4 @@ def end_of_file_checker(argv):
 
 
 if __name__ == '__main__':
-    sys.exit(end_of_file_checker())
+    sys.exit(end_of_file_fixer())
