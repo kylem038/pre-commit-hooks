@@ -8,7 +8,9 @@ import platform
 
 from pre_commit_hooks.util import entry
 
-quote_file = repr  # wrap with quotes
+
+def quote_file(fname):
+    return "'{}'".format(fname)
 
 
 def file_ends_with_newline(file_obj):
