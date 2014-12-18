@@ -8,7 +8,8 @@ import platform
 
 from pre_commit_hooks.util import entry
 
-quote_file = repr # wrap with quotes
+quote_file = repr  # wrap with quotes
+
 
 def file_ends_with_newline(file_obj):
     # Test for newline at end of file
@@ -22,6 +23,7 @@ def file_ends_with_newline(file_obj):
     if last_character != b'\n' and last_character != b'':
         return False
     return True
+
 
 def file_ends_with_multiple_newlines(file_obj):
     try:
@@ -39,6 +41,7 @@ FIX_MULTIPLE_NEWLINES = r'''for ff in {files}; do sed -i '' -e :a -e '/^\n*$/{{$
 if platform.system() != 'Darwin':
     FIX_MISSING_NEWLINE = FIX_MISSING_NEWLINE.replace("-i ''", "-i")
     FIX_MULTIPLE_NEWLINES = FIX_MULTIPLE_NEWLINES.replace("-i ''", "-i")
+
 
 @entry
 def end_of_file_fixer(argv):
