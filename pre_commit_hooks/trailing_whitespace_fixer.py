@@ -2,10 +2,8 @@ from __future__ import print_function
 
 import argparse
 import fileinput
-import os
-import sys
-from plumbum import local
 import platform
+import sys
 
 from pre_commit_hooks.util import cmd_output
 
