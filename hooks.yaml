@@ -133,3 +133,9 @@
     entry: eslint
     language: node
     files: \.js$
+-   id: django-migration-merge
+    name: Django migration merge
+    description: Check for mergeable django migrations
+    entry: django-migration-merge
+    language: python
+    files: \.py$
