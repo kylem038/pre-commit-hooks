@@ -56,6 +56,7 @@ setup(
             'requirements-txt-fixer = pre_commit_hooks.requirements_txt_fixer:fix_requirements_txt',
             'trailing-whitespace-fixer = pre_commit_hooks.trailing_whitespace_fixer:fix_trailing_whitespace',
             'django-migration-merge = pre_commit_hooks.django_migration_merge:check_for_django_migrations',
+            'detect-postgres-credentials = pre_commit_hooks.detect_postgres_credentials:main',
         ],
     },
 )

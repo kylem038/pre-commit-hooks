@@ -139,3 +139,9 @@
     entry: django-migration-merge
     language: python
     files: \.py$
+-   id: detect-postgres-credentials
+    name: Detect Postgres credentials
+    description: Search for postgres:// to make sure we don't commit credentials
+    entry: detect-postgres-credentials
+    language: python
+    files: \.py$
