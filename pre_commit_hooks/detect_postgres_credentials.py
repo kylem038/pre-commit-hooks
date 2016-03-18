@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 import argparse
 
 
-def check_file_for_db_url(filenames, keys):
+def check_file_for_db_url(filenames):
     bad_files = []
 
     for filename in filenames:
         with open(filename, 'r') as content:
             text_body = content.read()
-            if 'postgres://' in text_body:
+            if 'postgresql://' in text_body:
                 # naively match the entire file, low chance of incorrect collision
                 bad_files.append(filename)
 
