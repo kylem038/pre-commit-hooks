@@ -26,7 +26,7 @@ def rename_merge_file(output):
     path_start = output.find(pwd, loc)
     next_newline = output.find('\n', path_start)
     path_of_new_merge = output[path_start:next_newline]
-    new_path = rreplace(path_of_new_merge, '_merge.py', identifier() + '_merge.py')
+    new_path = rreplace(path_of_new_merge, 'merge.py', identifier() + '_merge.py')
     os.rename(path_of_new_merge, new_path)
     return new_path
 
