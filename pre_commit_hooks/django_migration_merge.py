@@ -42,6 +42,7 @@ def check_for_django_migrations(argv=None):
         new_path = rename_merge_file(output)
         print 'Created new merge migration', new_path
         print 'Please add and commit it'
+        return 1
     else:
         print 'Your migrations look like they could use a merge.'
         print 'psst, you can probably fix this by running'
