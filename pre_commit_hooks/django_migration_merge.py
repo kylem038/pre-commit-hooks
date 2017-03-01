@@ -33,7 +33,7 @@ def rename_merge_file(output):
 
 def check_for_django_migrations(argv=None):
     output = subprocess.check_output(
-        get_env_python() + ' manage.py makemigrations --merge  --noinput',
+        get_env_python() + ' manage.py makemigrations --merge',
         shell=True)
 
     if 'No conflicts detected to merge' in output:
@@ -44,11 +44,8 @@ def check_for_django_migrations(argv=None):
         print 'Please add and commit it'
         return 1
     else:
-        print 'Your migrations look like they could use a merge.'
-        print 'psst, you can probably fix this by running'
-        print '    ./manage.py makemigrations --merge'
-        print "    (give it a weird name so it doesn't conflict when somebody else does this.)"
-        print "Rather than 0012_merge.py, how about '0012_{}_merge.py'?".format(identifier())
+        print 'Your migrations look like they could use a merge,'
+        print "but it looks like you've elected not to do so?"
         return 1
 
 if __name__ == '__main__':
