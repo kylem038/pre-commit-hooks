@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import argparse
 
 from .identifiers import identifier
 
@@ -27,26 +28,25 @@ def rename_merge_file(output):
     next_newline = output.find('\n', path_start)
     path_of_new_merge = output[path_start:next_newline]
     new_path = rreplace(path_of_new_merge, 'merge.py', identifier() + '_merge.py')
-    os.rename(path_of_new_merge, new_path)
-    return new_path
+    return 'mv {} {}'.format(path_of_new_merge, new_path)
 
 
 def check_for_django_migrations(argv=None):
     output = subprocess.check_output(
-        get_env_python() + ' manage.py makemigrations --merge',
+        get_env_python() + ' manage.py makemigrations --merge  --noinput --dry-run',
         shell=True)
+    if 'No conflicts detected to merge' not in output:
+        print 'Your migrations look like they could use a merge.'
+        print 'psst, you can probably fix this by running'
+        print '    ./manage.py makemigrations --merge && {}'.format(rename_merge_file(output))
+        return 1
 
-    if 'No conflicts detected to merge' in output:
-        return 0
-    elif 'Created new merge migration ' in output:
-        new_path = rename_merge_file(output)
-        print 'Created new merge migration', new_path
-        print 'Please add and commit it'
-        return 1
-    else:
-        print 'Your migrations look like they could use a merge,'
-        print "but it looks like you've elected not to do so?"
-        return 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filenames', nargs='*', help='Filenames to check')
+    args = parser.parse_args(argv)
+    for arg in args:
+        print args
+
 
 if __name__ == '__main__':
     sys.exit(check_for_django_migrations())
