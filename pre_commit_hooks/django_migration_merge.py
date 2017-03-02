@@ -28,12 +28,13 @@ def rename_merge_file(output):
     next_newline = output.find('\n', path_start)
     path_of_new_merge = output[path_start:next_newline]
     new_path = rreplace(path_of_new_merge, 'merge.py', identifier() + '_merge.py')
+    os.remove(path_of_new_merge)
     return 'mv {} {}'.format(path_of_new_merge, new_path)
 
 
 def check_for_django_migrations(argv=None):
     output = subprocess.check_output(
-        get_env_python() + ' manage.py makemigrations --merge  --noinput --dry-run',
+        get_env_python() + ' manage.py makemigrations --merge  --noinput',
         shell=True)
     if 'No conflicts detected to merge' not in output:
         print 'Your migrations look like they could use a merge.'
@@ -44,8 +45,9 @@ def check_for_django_migrations(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('filenames', nargs='*', help='Filenames to check')
     args = parser.parse_args(argv)
-    for arg in args:
-        print args
+    for arg in args.filenames:
+        print arg
+    return 1
 
 
 if __name__ == '__main__':
