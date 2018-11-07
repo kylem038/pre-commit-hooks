@@ -9,6 +9,7 @@ def check_file_for_db_url(filenames):
     for filename in filenames:
         with open(filename, 'r') as content:
             text_body = content.read()
+            
             if 'mongodb+srv://' in text_body or 'mongodb://' in text_body:
                 # naively match the entire file, low chance of incorrect collision
                 bad_files.append(filename)
