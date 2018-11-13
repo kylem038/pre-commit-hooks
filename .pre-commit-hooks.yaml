@@ -145,3 +145,9 @@
     entry: detect-postgres-credentials
     language: python
     files: \.py$
+-   id: detect-mongo-creds
+    name: Detect Mongo credentials
+    description: Search for mongodb+srv:// to make sure we don't commit credentials
+    entry: detect-mongo-creds
+    language: python
+    files: ''
