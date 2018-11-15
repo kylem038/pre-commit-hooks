@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import argparse
+import re
 
 def check_file_for_db_url(filenames):
     bad_files = []
@@ -9,8 +10,9 @@ def check_file_for_db_url(filenames):
     for filename in filenames:
         with open(filename, 'r') as content:
             text_body = content.read()
-            
-            if 'mongodb+srv://' in text_body or 'mongodb://' in text_body:
+            match1 = re.search('mongodb+srv://(?!localhost)', text_body)
+            match2 = re.search('mongodb://(?!localhost)', text_body)
+            if match1 is not None or match2 is not None:
                 # naively match the entire file, low chance of incorrect collision
                 bad_files.append(filename)
 
