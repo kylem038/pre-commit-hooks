@@ -24,3 +24,7 @@
     sha: ecac1f1252afbe23fa21816fb6779692044157a4
     hooks:
     -   id: detect_mongo_creds
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: 9ecfe3c25b65a0b3ab4baf716dc572f3a41e424e
+    hooks:
+    -   id: detect_sql_creds
