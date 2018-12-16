@@ -151,3 +151,9 @@
     entry: detect-mongo-creds
     language: python
     files: ''
+-   id: detect-sql-creds
+    name: Detect SQL Server credentials
+    description: Search for Server= to make sure we don't commit credentials
+    entry: detect-sql-creds
+    language: python
+    files: ''
